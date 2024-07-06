@@ -1,3 +1,3 @@
 all:
-	gcc *.c
+	gcc -g *.c -lm
 	./a.out
