@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_STACK_CONCAT(X, Y)    X##Y##_
+#define ARRAY_STACK_CONCAT(X, Y)    X##_##Y##_
 #define ARRAY_STACK(type)   ARRAY_STACK_CONCAT(array_stack, type)
 #define ARRAY_STACK_INIT(type)  ARRAY_STACK_CONCAT(array_stack_init, type)
 #define ARRAY_STACK_SIZE(type)  ARRAY_STACK_CONCAT(array_stack_size, type)
@@ -25,8 +25,8 @@ typedef struct ARRAY_STACK(type) {  \
     unsigned int len;   \
 } ARRAY_STACK(type);    \
 void ARRAY_STACK_INIT(type)(ARRAY_STACK(type)* s) { \
-    s->data=(type*)malloc(sizeof(type)*ARRAY_STACK_INIT_CAP);   \
-    s->cap=1;   \
+    s->data=NULL;   \
+    s->cap=0;   \
     s->len=0;   \
 }   \
 unsigned int ARRAY_STACK_SIZE(type)(ARRAY_STACK(type)* s) {   \
@@ -43,6 +43,18 @@ type ARRAY_STACK_SET(type)(ARRAY_STACK(type)* s, unsigned int idx, type val) {  
     return ret; \
 }   \
 void ARRAY_STACK_RESIZE(type)(ARRAY_STACK(type)* s) {   \
+    if(!s->len) {   \
+        if(s->cap) {    \
+            free(s->data);  \
+            s->data=NULL;   \
+            s->cap=0;   \
+        }   \
+        else {  \
+            s->data=(type*)malloc(sizeof(type)*ARRAY_STACK_INIT_CAP);   \
+            s->cap=ARRAY_STACK_INIT_CAP;    \
+        }   \
+        return; \
+    }   \
     type* new_data=(type*)malloc(sizeof(type)*s->len*2);    \
     memcpy(new_data, s->data, sizeof(type)*(s->len));  \
     free(s->data);  \
