@@ -8,14 +8,14 @@ void doubly_linked_list_test() {
     DOUBLY_LINKED_LIST_INIT(int)(&dl_int);
 
     for(int i=0; i<20; i++)
-        DOUBLY_LINKED_LIST_PUSH_END(int)(&dl_int, i);
+        DOUBLY_LINKED_LIST_PUSH_BACK(int)(&dl_int, i);
     while(DOUBLY_LINKED_LIST_SIZE(int)(&dl_int))
-        printf("%d ", DOUBLY_LINKED_LIST_POP_END(int)(&dl_int));
+        printf("%d ", DOUBLY_LINKED_LIST_POP_BACK(int)(&dl_int));
 
     printf("\n");
 
     for(int i=0; i<20; i++)
-        DOUBLY_LINKED_LIST_PUSH_END(int)(&dl_int, i*i);
+        DOUBLY_LINKED_LIST_PUSH_BACK(int)(&dl_int, i*i);
     while(DOUBLY_LINKED_LIST_SIZE(int)(&dl_int))
         printf("%d ", DOUBLY_LINKED_LIST_POP_FRONT(int)(&dl_int));
 

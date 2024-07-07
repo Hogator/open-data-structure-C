@@ -13,7 +13,7 @@
 #define ARRAY_QUEUE_SET(type)   ARRAY_QUEUE_CONCAT(array_queue_set, type)
 #define ARRAY_QUEUE_ADD(type)   ARRAY_QUEUE_CONCAT(array_queue_add, type)
 #define ARRAY_QUEUE_REMOVE(type)   ARRAY_QUEUE_CONCAT(array_queue_remove, type)
-#define ARRAY_QUEUE_PUSH_END(type)   ARRAY_QUEUE_CONCAT(array_queue_push, type)
+#define ARRAY_QUEUE_PUSH_BACK(type)   ARRAY_QUEUE_CONCAT(array_queue_push, type)
 #define ARRAY_QUEUE_POP_FRONT(type)   ARRAY_QUEUE_CONCAT(array_queue_pop, type)
 #define ARRAY_QUEUE_RESIZE(type)    ARRAY_QUEUE_CONCAT(array_queue_resize, type)
 
@@ -110,7 +110,7 @@ type ARRAY_QUEUE_REMOVE(type)(ARRAY_QUEUE(type)* s, unsigned int idx) { \
         ARRAY_QUEUE_RESIZE(type)(s);    \
     return ret; \
 }   \
-void ARRAY_QUEUE_PUSH_END(type)(ARRAY_QUEUE(type)* s, type val) {   \
+void ARRAY_QUEUE_PUSH_BACK(type)(ARRAY_QUEUE(type)* s, type val) {   \
     ARRAY_QUEUE_ADD(type)(s, s->len, val);  \
 }   \
 type ARRAY_QUEUE_POP_FRONT(type)(ARRAY_QUEUE(type)* s) {  \

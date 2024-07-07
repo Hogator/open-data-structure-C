@@ -11,8 +11,8 @@
 #define DOUBLY_LINKED_LIST(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list, type)
 #define DOUBLY_LINKED_LIST_INIT(type)  DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_init, type)
 #define DOUBLY_LINKED_LIST_SIZE(type)  DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_size, type)
-#define DOUBLY_LINKED_LIST_PUSH_END(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_push_end, type)
-#define DOUBLY_LINKED_LIST_POP_END(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_pop_end, type)
+#define DOUBLY_LINKED_LIST_PUSH_BACK(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_push_back, type)
+#define DOUBLY_LINKED_LIST_POP_BACK(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_pop_back, type)
 #define DOUBLY_LINKED_LIST_PUSH_FRONT(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_push_front, type)
 #define DOUBLY_LINKED_LIST_POP_FRONT(type)   DOUBLY_LINKED_LIST_CONCAT(doubly_linked_list_pop_front, type)
 
@@ -41,12 +41,12 @@ void DOUBLY_LINKED_LIST_INIT(type)(DOUBLY_LINKED_LIST(type)* dl) { \
 unsigned int DOUBLY_LINKED_LIST_SIZE(type)(DOUBLY_LINKED_LIST(type)* dl) {   \
     return dl->len;  \
 }   \
-void DOUBLY_LINKED_LIST_PUSH_END(type)(DOUBLY_LINKED_LIST(type)* dl, type val) {   \
+void DOUBLY_LINKED_LIST_PUSH_BACK(type)(DOUBLY_LINKED_LIST(type)* dl, type val) {   \
     DOUBLY_LINKED_LIST_NODE(type)* node=(DOUBLY_LINKED_LIST_NODE(type)*)malloc(sizeof(DOUBLY_LINKED_LIST_NODE(type)));  \
     DOUBLY_LINKED_LIST_NODE_INIT(type)(node, val, &dl->head, dl->head.pre);    \
     dl->len++;   \
 }   \
-type DOUBLY_LINKED_LIST_POP_END(type)(DOUBLY_LINKED_LIST(type)* dl) {  \
+type DOUBLY_LINKED_LIST_POP_BACK(type)(DOUBLY_LINKED_LIST(type)* dl) {  \
     assert(dl->len); \
     DOUBLY_LINKED_LIST_NODE(type)* node=dl->head.pre;    \
     type ret=node->data; \

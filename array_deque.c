@@ -13,24 +13,24 @@ void array_deque_test() {
     //     printf("%d ", ARRAY_DEQUE_GET(int)(&q_int, i));
     // putchar('\n');
     // for(int i=0; i<20; i++)
-    //     ARRAY_DEQUE_PUSH_END(int)(&q_int, i+5);
+    //     ARRAY_DEQUE_PUSH_BACK(int)(&q_int, i+5);
     // for(int i=0; i<15; i++)
     //     printf("%d ", ARRAY_DEQUE_POP_FRONT(int)(&q_int));
     // putchar('\n');
     // for(int i=0; i<10; i++)
-    //     ARRAY_DEQUE_PUSH_END(int)(&q_int, i-10);
+    //     ARRAY_DEQUE_PUSH_BACK(int)(&q_int, i-10);
     // for(int i=0; i<15; i++)
     //     printf("%d ", ARRAY_DEQUE_POP_FRONT(int)(&q_int));
 
 
     for(int i=0; i<10; i++)
-        ARRAY_DEQUE_PUSH_END(int)(&q_int, i*i);
+        ARRAY_DEQUE_PUSH_BACK(int)(&q_int, i*i);
     for(int i=0; i<10; i++)
         ARRAY_DEQUE_PUSH_FRONT(int)(&q_int, i*i*i);
     for(int i=0; i<15; i++)
         printf("%d ", ARRAY_DEQUE_POP_FRONT(int)(&q_int));
     for(int i=0; i<5; i++)
-        printf("%d ", ARRAY_DEQUE_POP_END(int)(&q_int));
+        printf("%d ", ARRAY_DEQUE_POP_BACK(int)(&q_int));
 
     printf("\n\n");
 }

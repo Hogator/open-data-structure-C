@@ -13,10 +13,10 @@
 #define ARRAY_DEQUE_SET(type)   ARRAY_DEQUE_CONCAT(array_deque_set, type)
 #define ARRAY_DEQUE_ADD(type)   ARRAY_DEQUE_CONCAT(array_deque_add, type)
 #define ARRAY_DEQUE_REMOVE(type)   ARRAY_DEQUE_CONCAT(array_deque_remove, type)
-#define ARRAY_DEQUE_PUSH_END(type)   ARRAY_DEQUE_CONCAT(array_deque_push_end, type)
-#define ARRAY_DEQUE_POP_END(type)   ARRAY_DEQUE_CONCAT(array_deque_pop_end, type)
+#define ARRAY_DEQUE_PUSH_BACK(type)   ARRAY_DEQUE_CONCAT(array_deque_push_back, type)
+#define ARRAY_DEQUE_POP_BACK(type)   ARRAY_DEQUE_CONCAT(array_deque_pop_back, type)
 #define ARRAY_DEQUE_PUSH_FRONT(type)   ARRAY_DEQUE_CONCAT(array_deque_push_front, type)
-#define ARRAY_DEQUE_POP_FRONT(type)   ARRAY_DEQUE_CONCAT(array_deque_pop, type)
+#define ARRAY_DEQUE_POP_FRONT(type)   ARRAY_DEQUE_CONCAT(array_deque_pop_front, type)
 #define ARRAY_DEQUE_RESIZE(type)    ARRAY_DEQUE_CONCAT(array_deque_resize, type)
 
 #define ARRAY_DEQUE_INIT_CAP    1
@@ -142,10 +142,10 @@ type ARRAY_DEQUE_REMOVE(type)(ARRAY_DEQUE(type)* s, unsigned int idx) { \
         ARRAY_DEQUE_RESIZE(type)(s);    \
     return ret; \
 }   \
-void ARRAY_DEQUE_PUSH_END(type)(ARRAY_DEQUE(type)* s, type val) {   \
+void ARRAY_DEQUE_PUSH_BACK(type)(ARRAY_DEQUE(type)* s, type val) {   \
     ARRAY_DEQUE_ADD(type)(s, s->len, val);  \
 }   \
-type ARRAY_DEQUE_POP_END(type)(ARRAY_DEQUE(type)* s) {  \
+type ARRAY_DEQUE_POP_BACK(type)(ARRAY_DEQUE(type)* s) {  \
     return ARRAY_DEQUE_REMOVE(type)(s, s->len-1); \
 }   \
 type ARRAY_DEQUE_PUSH_FRONT(type)(ARRAY_DEQUE(type)* s, type val) {   \

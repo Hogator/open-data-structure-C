@@ -7,6 +7,7 @@
 
 #include "singly_linked_list.h"
 #include "doubly_linked_list.h"
+#include "space_efficient_linked_list.h"
 
 int main(int argc, char** argv) {
 
@@ -20,7 +21,9 @@ int main(int argc, char** argv) {
 
     // singly_linked_list_test();
 
-    doubly_linked_list_test();
+    // doubly_linked_list_test();
+
+    space_efficient_linked_list_test();
 
     return 0;
 }
