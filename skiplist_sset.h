@@ -22,14 +22,17 @@ typedef struct SKIPLIST_SSET_NODE(type) {   \
 } SKIPLIST_SSET_NODE(type); \
 typedef struct SKIPLIST_SSET(type) {    \
     struct SKIPLIST_SSET_NODE(type) sentinel;   \
-    unsigned int h; \
+    int h; \
 } SKIPLIST_SSET(type); \
 void SKIPLIST_SSET_INIT(type)(SKIPLIST_SSET(type)* ss) {   \
     ss->sentinel.next=NULL; \
-    ss->h=0;    \
+    ss->h=-1;    \
     srand(time(0)); \
 }   \
 bool SKIPLIST_SSET_FIND(type)(SKIPLIST_SSET(type)* ss, type val) { \
+    if(ss->h<0) {   \
+        return false;   \
+    }   \
     SKIPLIST_SSET_NODE(type)* u=&ss->sentinel;  \
     int r=ss->h;   \
     while(r>=0) {   \
@@ -42,7 +45,7 @@ bool SKIPLIST_SSET_FIND(type)(SKIPLIST_SSET(type)* ss, type val) { \
 }   \
 bool SKIPLIST_SSET_ADD(type)(SKIPLIST_SSET(type)* ss, type val) {  \
     unsigned int n=rand();  \
-    unsigned int h=0;   \
+    int h=0;   \
     while(n=(n&(n-1))) {   \
         h++;    \
     }   \
@@ -83,7 +86,7 @@ bool SKIPLIST_SSET_REMOVE(type)(SKIPLIST_SSET(type)* ss, type val) {   \
     bool rm=false;  \
     SKIPLIST_SSET_NODE(type)* u=&ss->sentinel;    \
     int r=ss->h;   \
-    unsigned int new_h=ss->h;   \
+    int new_h=ss->h;   \
     while(r>=0) {   \
         while(u->next[r] && u->next[r]->data<val) { \
             u=u->next[r];   \
@@ -101,10 +104,15 @@ bool SKIPLIST_SSET_REMOVE(type)(SKIPLIST_SSET(type)* ss, type val) {   \
     if(rm) {    \
         free(node); \
     }   \
-    if(new_h<ss->h) {   \
+    if(new_h<0) {    \
+        free(ss->sentinel.next);    \
+        ss->sentinel.next=NULL; \
+    }   \
+    else if(new_h<ss->h) {   \
         ss->sentinel.next=(SKIPLIST_SSET_NODE(type)**)realloc(ss->sentinel.next, sizeof(SKIPLIST_SSET_NODE(type)*)*(new_h+1));  \
     }   \
-    return rm;    \
+    ss->h=new_h;    \
+    return rm;  \
 }
 
 

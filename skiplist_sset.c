@@ -9,22 +9,27 @@ void skiplist_sset_test() {
     SKIPLIST_SSET(int)  s_int;
     SKIPLIST_SSET_INIT(int)(&s_int);
 
-    printf("%d ", SKIPLIST_SSET_ADD(int)(&s_int, 1));
-    printf("%d ", SKIPLIST_SSET_ADD(int)(&s_int, 2));
-    printf("%d ", SKIPLIST_SSET_ADD(int)(&s_int, 3));
-    printf("%d ", SKIPLIST_SSET_ADD(int)(&s_int, 4));
-    printf("%d ", SKIPLIST_SSET_ADD(int)(&s_int, 1));
-
-    printf("%d ", SKIPLIST_SSET_REMOVE(int)(&s_int, 3));
-    // printf("%d ", SKIPLIST_SSET_REMOVE(int)(&s_int, 4));
+    for(int i=0; i<40; i++)
+        SKIPLIST_SSET_ADD(int)(&s_int, i);
+    for(int i=0; i<40; i++)
+        printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, i));
+    printf("h: %d", s_int.h);
 
     putchar('\n');
 
-    printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, 1));
-    printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, 2));
-    printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, 3));
-    printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, 4));
-    printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, 5));
+    for(int i=1; i<40; i+=2)
+        SKIPLIST_SSET_REMOVE(int)(&s_int, i);
+    for(int i=0; i<40; i++)
+        printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, i));
+    printf("h: %d", s_int.h);
+
+    putchar('\n');
+
+    for(int i=0; i<40; i+=2)
+        SKIPLIST_SSET_REMOVE(int)(&s_int, i);
+    for(int i=0; i<40; i++)
+        printf("%d ", SKIPLIST_SSET_FIND(int)(&s_int, i));
+    printf("h: %d", s_int.h);
 
     printf("\n\n");
 }
