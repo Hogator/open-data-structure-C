@@ -146,7 +146,6 @@ type SPACE_EFFICIENT_LINKED_LIST_FIXED_FREE(type)(SPACE_EFFICIENT_LINKED_LIST_FI
 #define SPACE_EFFICIENT_LINKED_LIST_POP_BACK(type)   SPACE_EFFICIENT_LINKED_LIST_CONCAT(space_efficient_linked_list_pop_back, type)
 #define SPACE_EFFICIENT_LINKED_LIST_PUSH_FRONT(type)   SPACE_EFFICIENT_LINKED_LIST_CONCAT(space_efficient_linked_list_push_front, type)
 #define SPACE_EFFICIENT_LINKED_LIST_POP_FRONT(type)   SPACE_EFFICIENT_LINKED_LIST_CONCAT(space_efficient_linked_list_pop_front, type)
-#define SPACE_EFFICIENT_LINKED_LIST_FREE(type)    SPACE_EFFICIENT_LINKED_LIST_CONCAT(space_efficient_linked_list_free, type)
 
 #define SPACE_EFFICIENT_LINKED_LIST_DECL(type)  \
 typedef struct SPACE_EFFICIENT_LINKED_LIST_NODE(type) { \
@@ -247,6 +246,59 @@ void SPACE_EFFICIENT_LINKED_LIST_ADD(type)(SPACE_EFFICIENT_LINKED_LIST(type)* se
     }   \
     SPACE_EFFICIENT_LINKED_LIST_FIXED_ADD(type)(w->d, idx_, val);  \
     sel->len++; \
+}   \
+type SPACE_EFFICIENT_LINKED_LIST_REMOVE(type)(SPACE_EFFICIENT_LINKED_LIST(type)* sel, unsigned int idx) { \
+    assert(idx<sel->len);  \
+    unsigned int idx_=0;    \
+    SPACE_EFFICIENT_LINKED_LIST_NODE(type)* u=SPACE_EFFICIENT_LINKED_LIST_FIND(type)(sel, idx, &idx_);    \
+    unsigned int r=0;   \
+    SPACE_EFFICIENT_LINKED_LIST_NODE(type)* w=u;    \
+    while(r<sel->b && w!=&sel->dummy && SPACE_EFFICIENT_LINKED_LIST_FIXED_SIZE(type)(w->d)==sel->b-1) { \
+        w=w->next;  \
+        r++;    \
+    }   \
+    if(r==sel->b) {  \
+        w=w->pre;   \
+        while(w!=u) {   \
+            while(SPACE_EFFICIENT_LINKED_LIST_FIXED_SIZE(type)(w->d)<sel->b) {   \
+                SPACE_EFFICIENT_LINKED_LIST_FIXED_PUSH_FRONT(type)(w->d, SPACE_EFFICIENT_LINKED_LIST_FIXED_POP_BACK(type)(w->pre->d));   \
+            }   \
+            w=w->pre;   \
+        }   \
+        assert(!SPACE_EFFICIENT_LINKED_LIST_FIXED_SIZE(type)(w->d));   \
+        w->next->pre=w->pre;    \
+        w=w->next;  \
+        SPACE_EFFICIENT_LINKED_LIST_FIXED_FREE(type)(w->pre->next->d);    \
+        free(w->pre->next); \
+        w->pre->next=w; \
+        u=w;    \
+    }   \
+    type ret=SPACE_EFFICIENT_LINKED_LIST_FIXED_REMOVE(type)(u->d, idx_);   \
+    while(u!=w && u->next!=&sel->dummy) {   \
+        SPACE_EFFICIENT_LINKED_LIST_FIXED_PUSH_BACK(type)(u->d, SPACE_EFFICIENT_LINKED_LIST_FIXED_POP_FRONT(type)(u->next->d));   \
+        u=u->next;  \
+    }   \
+    if(!SPACE_EFFICIENT_LINKED_LIST_FIXED_SIZE(type)(u->d)) { \
+        u->next->pre=u->pre;    \
+        u=u->next;  \
+        SPACE_EFFICIENT_LINKED_LIST_FIXED_FREE(type)(u->pre->next->d);    \
+        free(u->pre->next); \
+        u->pre->next=u; \
+    }   \
+    sel->len--; \
+    return ret; \
+}   \
+void SPACE_EFFICIENT_LINKED_LIST_PUSH_BACK(type)(SPACE_EFFICIENT_LINKED_LIST(type)* sel, type val) {    \
+    SPACE_EFFICIENT_LINKED_LIST_ADD(type)(sel, sel->len, val);    \
+}   \
+type SPACE_EFFICIENT_LINKED_LIST_POP_BACK(type)(SPACE_EFFICIENT_LINKED_LIST(type)* sel) {    \
+    return SPACE_EFFICIENT_LINKED_LIST_REMOVE(type)(sel, sel->len-1);    \
+}   \
+void SPACE_EFFICIENT_LINKED_LIST_PUSH_FRONT(type)(SPACE_EFFICIENT_LINKED_LIST(type)* sel, type val) {    \
+    SPACE_EFFICIENT_LINKED_LIST_ADD(type)(sel, 0, val);    \
+}   \
+type SPACE_EFFICIENT_LINKED_LIST_POP_FRONT(type)(SPACE_EFFICIENT_LINKED_LIST(type)* sel) {    \
+    return SPACE_EFFICIENT_LINKED_LIST_REMOVE(type)(sel, 0);    \
 }
 
 
