@@ -3,7 +3,6 @@
 #include "space_efficient_linked_list.h"
 
 
-SPACE_EFFICIENT_LINKED_LIST_FIXED_DECL(int)
 SPACE_EFFICIENT_LINKED_LIST_DECL(int)
 void space_efficient_linked_list_test() {
 

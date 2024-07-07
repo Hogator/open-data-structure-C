@@ -9,6 +9,8 @@
 #include "doubly_linked_list.h"
 #include "space_efficient_linked_list.h"
 
+#include "skiplist_sset.h"
+
 int main(int argc, char** argv) {
 
     // array_stack_test();
@@ -23,7 +25,9 @@ int main(int argc, char** argv) {
 
     // doubly_linked_list_test();
 
-    space_efficient_linked_list_test();
+    // space_efficient_linked_list_test();
+
+    skiplist_sset_test();
 
     return 0;
 }
