@@ -70,7 +70,7 @@ type DOUBLY_LINKED_LIST_POP_FRONT(type)(DOUBLY_LINKED_LIST(type)* dl) {  \
     free(node); \
     dl->len--;   \
     return ret;  \
-}
+}   \
 
 
 void doubly_linked_list_test();

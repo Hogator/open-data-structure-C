@@ -113,7 +113,7 @@ bool SKIPLIST_SSET_REMOVE(type)(SKIPLIST_SSET(type)* ss, type val) {   \
     }   \
     ss->h=new_h;    \
     return rm;  \
-}
+}   \
 
 
 void skiplist_sset_test();

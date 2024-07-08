@@ -69,7 +69,7 @@ void SINGLY_LINKED_LIST_PUSH(type)(SINGLY_LINKED_LIST(type)* sl, type val) {   \
 }   \
 type SINGLY_LINKED_LIST_POP(type)(SINGLY_LINKED_LIST(type)* sl) {  \
     return SINGLY_LINKED_LIST_REMOVE(type)(sl);  \
-}
+}   \
 
 
 void singly_linked_list_test();

@@ -129,7 +129,7 @@ type SPACE_EFFICIENT_LINKED_LIST_FIXED_FREE(type)(SPACE_EFFICIENT_LINKED_LIST_FI
     s->cap=0;   \
     s->sta=0;   \
     s->len=0;   \
-}
+}   \
 
 
 #define SPACE_EFFICIENT_LINKED_LIST_CONCAT(X, Y)    X##_##Y##_
@@ -300,7 +300,7 @@ void SPACE_EFFICIENT_LINKED_LIST_PUSH_FRONT(type)(SPACE_EFFICIENT_LINKED_LIST(ty
 }   \
 type SPACE_EFFICIENT_LINKED_LIST_POP_FRONT(type)(SPACE_EFFICIENT_LINKED_LIST(type)* sel) {    \
     return SPACE_EFFICIENT_LINKED_LIST_REMOVE(type)(sel, 0);    \
-}
+}   \
 
 
 void space_efficient_linked_list_test();

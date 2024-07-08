@@ -153,7 +153,7 @@ type ARRAY_DEQUE_PUSH_FRONT(type)(ARRAY_DEQUE(type)* s, type val) {   \
 }   \
 type ARRAY_DEQUE_POP_FRONT(type)(ARRAY_DEQUE(type)* s) {  \
     return ARRAY_DEQUE_REMOVE(type)(s, 0); \
-}
+}   \
 
 
 void array_deque_test();

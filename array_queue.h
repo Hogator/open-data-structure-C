@@ -115,8 +115,7 @@ void ARRAY_QUEUE_PUSH_BACK(type)(ARRAY_QUEUE(type)* s, type val) {   \
 }   \
 type ARRAY_QUEUE_POP_FRONT(type)(ARRAY_QUEUE(type)* s) {  \
     return ARRAY_QUEUE_REMOVE(type)(s, 0); \
-}
-
+}   \
 
 
 void array_queue_test();

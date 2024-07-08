@@ -83,7 +83,7 @@ void ARRAY_STACK_PUSH(type)(ARRAY_STACK(type)* s, type val) {   \
 }   \
 type ARRAY_STACK_POP(type)(ARRAY_STACK(type)* s) {  \
     return ARRAY_STACK_REMOVE(type)(s, s->len-1); \
-}
+}   \
 
 
 void array_stack_test();

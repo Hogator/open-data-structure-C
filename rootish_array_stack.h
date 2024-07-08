@@ -101,7 +101,8 @@ void ARRAY_QUEUE_FIXED_FREE(type)(ARRAY_QUEUE_FIXED(type)* s) {  \
     s->cap=0;   \
     s->sta=0;   \
     s->len=0;   \
-}
+}   \
+
 
 #define ROOTISH_ARRAY_STACK_CONCAT(X, Y)    X##_##Y##_
 #define ROOTISH_ARRAY_STACK(type)   ROOTISH_ARRAY_STACK_CONCAT(rootish_array_stack, type)
@@ -187,7 +188,7 @@ void ROOTISH_ARRAY_STACK_PUSH(type)(ROOTISH_ARRAY_STACK(type)* s, type val) {   
 }   \
 type ROOTISH_ARRAY_STACK_POP(type)(ROOTISH_ARRAY_STACK(type)* s) {   \
     return ROOTISH_ARRAY_STACK_REMOVE(type)(s, s->len-1);    \
-}
+}   \
 
 
 
