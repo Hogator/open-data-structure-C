@@ -13,6 +13,7 @@
 #include "skiplist_list.h"
 
 #include "chained_hashtable.h"
+#include "linear_hashtable.h"
 
 int main(int argc, char** argv) {
 
@@ -34,7 +35,9 @@ int main(int argc, char** argv) {
 
     // skiplist_list_test();
 
-    chained_hashtable_test();
+    // chained_hashtable_test();
+
+    linear_hashtable_test();
 
     return 0;
 }

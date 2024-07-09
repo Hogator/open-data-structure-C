@@ -22,6 +22,8 @@ void chained_hashtable_test() {
     for(int i=0; i<40; i++)
         printf("%d ", CHAINED_HASHTABLE_FIND(int)(&ct_int, i));
 
+    CHAINED_HASHTABLE_FREE(int)(&ct_int);
+
 
     printf("\n\n");
 }
