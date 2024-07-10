@@ -15,6 +15,8 @@
 #include "chained_hashtable.h"
 #include "linear_hashtable.h"
 
+#include "binary_tree.h"
+
 int main(int argc, char** argv) {
 
     // array_stack_test();
@@ -37,7 +39,9 @@ int main(int argc, char** argv) {
 
     // chained_hashtable_test();
 
-    linear_hashtable_test();
+    // linear_hashtable_test();
+
+    binary_tree_test();
 
     return 0;
 }
